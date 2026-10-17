@@ -1,147 +1,139 @@
-# ST Vidéo
+# ST Vidéo — Encodeur vidéo PC vers Atari ST
 
-Encodeur Windows et lecteur Atari ST / STF / STE : **320 × 200, 16 couleurs
-parmi les 512 du ST, son mono et lecture PAL à 12,5 ou 25 images/s**.
+L'idée est simple : prendre une vidéo sur le PC, la convertir, puis la regarder
+sur un Atari ST avec le son. C'est ce que permet ST Vidéo.
 
-Je suis **David Ascenso**. J'ai lancé ce projet à partir de mon encodeur,
-de mon lecteur et de mes premiers essais de vidéo sur Atari. Avec cette
-version, j'ai voulu aller plus loin : une interface, des palettes optimisées,
-le traitement audio et la restitution YM anticipée sur STF. Le lecteur fourni, `STFPLAY.PRG`, est écrit en
-assembleur 68000 ; l'encodeur est écrit en Python et utilise FFmpeg.
+Je suis **David Ascenso**. J'avais déjà réalisé mon encodeur et mon lecteur
+vidéo pour Atari. J'ai voulu rendre l'ensemble plus simple à utiliser et
+améliorer l'image et le son, tout en restant sur un ST à **8 MHz**.
 
-## Résultat sur un vrai STF
+L'encodeur fonctionne sous **Windows 10 et 11, en français et en anglais**.
+Il prépare la vidéo en **320 × 200 et 16 couleurs**, puis crée un fichier
+à copier sur l'Atari. Le lecteur **STFPLAY.PRG** est fourni avec le programme.
+Le tout fonctionne sur **ST, STF et STE, à partir de 512 Ko de RAM**, en PAL.
 
-J'ai testé la lecture sur mon **STF avec disque ACSI sur carte SD** :
+**[Télécharger l'installateur ou la version portable](https://github.com/DDRCREW-PROG/STVideo/releases/latest)** · [Read in English](README.en.md)
 
-| Réglage STV | Débit du fichier | Résultat de mes essais |
-| --- | --- | --- |
-| 12,5 images/s | 409 600 octets/s, environ 410 ko/s | Lecture fluide lors de mes essais |
-| 25 images/s | 819 200 octets/s, environ 819 ko/s | Ralentissements sur ce stockage |
+## Ce que ça donne sur mon STF
 
-Ces résultats correspondent à ma machine et à mon stockage. Un débit annoncé à
-800–900 ko/s laisse peu de marge à 25 images/s : les pauses de lecture,
-le pilote et le système de fichiers comptent aussi. **Commencez à 12,5
-images/s sur STF.** Je n'ai pas consigné la quantité de RAM de mon STF lors de cet essai.
-Les essais sous Hatari ont notamment été réalisés avec 512 Ko et à 8 MHz.
-Hatari avec un dossier Windows ne mesure pas les performances ACSI réelles.
+J'ai testé le lecteur sur mon **Atari STF avec 1 Mo de RAM**, équipé d'un
+**disque ACSI sur carte SD**. Le programme fonctionne aussi avec **512 Ko**.
 
-Télécharger la version Windows : [installateur et version portable](https://github.com/DDRCREW-PROG/STVideo/releases/latest).
+À **12,5 images par seconde**, ça tourne bien et le résultat est étonnamment
+fluide. À **25 images par seconde**, la lecture ralentit sur mon installation :
+le stockage n'arrive pas à suivre. C'est donc le mode 12,5 images/s que je
+conseille pour commencer sur STF.
 
-[English documentation](README.en.md)
+Le film garde sa vitesse normale : il dure aussi longtemps que l'original.
+On affiche simplement moins d'images par seconde.
 
-## Installer sous Windows
+Pour donner un ordre d'idée, le fichier demande environ **410 ko/s à
+12,5 images/s**, contre **819 ko/s à 25 images/s**. Même avec un stockage
+annoncé à 800–900 ko/s, les temps d'accès et le pilote peuvent faire la différence.
+Les essais sous Hatari ont aussi été réalisés à 8 MHz avec 512 Ko, mais un
+émulateur ne permet pas de juger le débit d'un vrai disque ACSI.
 
-Les distributions disponibles sont :
+## Installer et essayer
 
-- **STVideo-1.0.1-Setup.exe** : installateur Windows 10/11 x64, pour
-  l'utilisateur courant, avec raccourci dans le menu Démarrer et désinstallation.
-- **STVideo-1.0.1-Windows-portable.zip** : extraire tout le dossier puis
-  lancer **STVideo.exe**. Pas besoin d'installer Python ni FFmpeg.
-- **STVideo-1.0.1-sources.zip** : sources de l'application et du lecteur,
-  dépendances et instructions de reconstruction.
+Sur la [page des téléchargements](https://github.com/DDRCREW-PROG/STVideo/releases/latest), vous avez le choix :
 
-L'application propose le français et l'anglais (sélecteur Langue / Language). Les clips personnels, émulateurs et ROM TOS
-ne sont pas fournis. Les fichiers de sortie sont créés dans le dossier choisi
-dans l'interface ; par défaut, `Vidéos/STVideo` dans le profil Windows.
+- **Setup.exe** : l'installateur Windows, avec un raccourci et une désinstallation classique.
+- **Windows-portable.zip** : décompressez le dossier, puis lancez **STVideo.exe**.
+- **sources.zip** : les sources pour ceux qui veulent regarder comment ça marche ou les modifier.
 
-## Tutoriel STF : réglages conseillés
+Vous n'avez pas besoin d'installer Python ou FFmpeg : ils sont inclus.
+Le choix **Langue / Language** en haut de la fenêtre permet de passer du
+français à l'anglais. Le programme mémorise votre choix.
 
-1. Choisir la vidéo locale ou une URL prise en charge par yt-dlp.
-2. Cliquer sur **Réglages STF / ACSI conseillés**. Ce profil sélectionne
-   **12,5 images/s**, **Trame fixe (stable)**, **Palette ST optimisée** et
-   **Réglage audio optimisé pour STF (plus lent)**.
-3. Choisir le dossier de sortie et un nom Atari de 1 à 8 caractères.
-   Indiquer éventuellement un début et une durée en secondes.
-4. Cliquer sur **Essayer sur 5 secondes**. L'essai est placé dans `APERCU`.
-   Examiner l'aperçu puis tester ce STV sur la machine réelle.
-5. Encoder le clip complet, puis copier **<NOM>.STV** et **STFPLAY.PRG**
-   sur le stockage Atari. Lancer le lecteur en basse résolution couleur PAL.
+1. Choisissez une vidéo sur votre PC. Vous pouvez aussi essayer une URL vidéo ; sa prise en charge dépend du site.
+2. Cliquez sur **Réglages STF / ACSI conseillés** si vous utilisez un STF.
+3. Choisissez le dossier de sortie et donnez un nom court au clip : **1 à 8 caractères** pour l'Atari.
+4. Cliquez sur **Essayer sur 5 secondes** pour vérifier le rendu avant de lancer toute la vidéo.
+5. Encodez, puis copiez **<NOM>.STV** et **STFPLAY.PRG** sur le disque de l'Atari.
+6. Lancez **STFPLAY.PRG**, en basse résolution couleur sur un Atari PAL.
 
-Le guide complet est accessible dans l'onglet **Guide STF** de l'application
-et dans [docs/GUIDE-STF.txt](docs/GUIDE-STF.txt).
+Les essais de cinq secondes sont rangés dans le sous-dossier **APERCU**.
+Si le nom choisi existe déjà, l'encodeur ajoute un numéro : vos anciens
+fichiers sont conservés.
 
-À 12,5 images/s, le film conserve sa durée : l'écran est renouvelé toutes
-les quatre VBL PAL au lieu de deux. La fluidité dépend du mouvement du clip.
-L'audio STV est préparé à **8 192 Hz** à 12,5 images/s, et **12 288 Hz** à
-25 images/s. Le réglage « plus lent » de l'audio STF désigne le **temps
-d'encodage sur PC**, pas une lecture ralentie sur Atari.
+## Les réglages que je conseille
 
-## Lecture sur Atari
+Pour un STF, commencez avec **12,5 images/s**, **Trame fixe (stable)**,
+**Palette ST optimisée** et **Réglage audio optimisé pour STF (plus lent)**.
+Le bouton des réglages conseillés fait cela pour vous.
 
-`STFPLAY.PRG` ouvre `VIDEO.STV` s'il existe ; sinon, il affiche un sélecteur.
-**Shift droit** pendant la lecture arrête le clip et ouvre le sélecteur pour
-un autre STV. **Échap** quitte ; annuler le sélecteur quitte également.
-Le son est inclus dans le STV : les WAV et le LAV ne sont pas nécessaires.
-Toujours conserver le lecteur récent avec les clips, surtout au format STV3.
+Le mot « plus lent » concerne le temps de préparation sur le PC.
+La vidéo ne sera pas lue au ralenti sur l'Atari.
 
-## Couleurs et tramage
+La palette optimisée choisit les 16 couleurs les mieux adaptées à l'image
+parmi les **512 couleurs du ST**. Le tramage ajoute de petits motifs pour
+rendre les dégradés plus agréables. La **trame fixe** est un bon point de
+départ ; pour les dessins animés, les textes et les aplats, essayez aussi
+**Sans dithering**. Comparez les réglages sur un petit extrait : selon la
+vidéo, le résultat peut être assez différent.
 
-**Palette ST optimisée** cherche 16 couleurs distinctes dans la grille
-matérielle de 512 couleurs, avec un critère CIELAB pondéré. Le choix n'est
-pas une garantie d'optimum global. Les coupures de plan peuvent réinitialiser
-la palette. La méthode **Palette classique rapide** reste disponible.
+**Plus nette** peut aider à retrouver du détail. **Très nette** accentue
+davantage l'image, mais peut créer des contours trop marqués. Le nettoyage
+vidéo atténue le grain ; s'il efface des détails, réduisez-le ou désactivez-le.
 
-- **Trame fixe (stable)** : motif ordonné fixe ; réglage conseillé pour
-  commencer en vidéo sur STF. Le motif est fixe, pas nécessairement la palette.
-- **Trame adaptative** : mélanges de couleurs selon l'image, motif fixe
-  et intensité réglable ; à comparer sur les dégradés.
-- **Sans dithering** : utile pour dessins animés, textes et aplats.
-- **Diffusion Floyd** : autre rendu possible, qui peut scintiller en vidéo.
+## Pour le son : STF ou STE ?
 
-La netteté agit avant la réduction des couleurs. **Plus nette** peut aider,
-**Très nette** peut ajouter des halos. Le nettoyage vidéo atténue le grain
-mais peut effacer des détails. Ces traitements se font sur le PC : ils ne
-modifient pas le débit du fichier ni le nombre de couleurs du ST.
+Sur **STF**, choisissez l'**audio optimisé pour STF**. Le PC prépare le son
+pour le circuit YM2149 de l'Atari. Cela réduit une partie du grésillement,
+mais le son reste moins propre que sur un STE.
 
-## Quel réglage audio choisir ?
+Sur **STE**, choisissez l'**audio optimisé pour STE** pour profiter de sa
+sortie audio DMA, de meilleure qualité. Un fichier préparé en mode STF
+reste en mode YM même sur un STE : pour profiter du son DMA, réencodez-le
+avec le réglage STE.
 
-| Mode | Fichier | Sur STF | Sur STE |
-| --- | --- | --- | --- |
-| Réglage audio optimisé pour STF (plus lent) | STV3 | YM anticipé, lecture continue | Même sortie YM ; pas de DMA |
-| Audio optimisé pour STE | STV1 | Restitution YM classique | Détection du STE et sortie DMA |
-| YM léger (expérimental) | STV2 | Une écriture YM par échantillon, recalage par image | Même sortie YM |
+Commencez avec le nettoyage audio **Léger**. Le mode **Renforcé** peut aider
+sur une source bruyante, mais aussi enlever des aigus. L'option de renforcement
+des sources faibles remonte le volume, avec un gain limité à environ +12 dB.
+Le mode **YM léger** est expérimental ; je conseille le mode STF optimisé
+pour une utilisation normale.
 
-Le STF n'a pas le DAC audio DMA du STE. Le mode STF précalcule sur le PC une
-suite de changements des volumes du YM2149, puis les enchaîne sans abandonner
-systématiquement la fin de chaque trame audio. Certains parasites diminuent,
-mais le résultat reste moins propre que le DMA du STE. **Un STV3 lu sur STE
-ne retrouve pas le son DMA : il faut réencoder en mode STE pour cela.**
+Le STE a toujours besoin d'un disque assez rapide. Vous pouvez donc choisir
+12,5 images/s avec l'audio STE si votre stockage peine à suivre à 25 images/s.
 
-Le nettoyage audio Léger, Renforcé ou Voix filtre la source. Renforcé peut
-retirer des aigus : commencer par Léger. Le renforcement des sources faibles
-limite le gain à environ +12 dB. Ces options ne suppriment pas tous les bruits
-du circuit analogique ou les retards d'interruptions.
+## Pendant la lecture sur Atari
 
-Le profil STE propose 25 images/s et l'audio DMA. Le stockage doit toujours
-suivre : le STE ne résout pas un débit disque insuffisant. On peut aussi
-choisir 12,5 images/s avec l'audio STE.
+- **Shift droit** : arrêter la vidéo et ouvrir le sélecteur pour en choisir une autre.
+- **Échap** : quitter le lecteur. Annuler le sélecteur quitte aussi.
 
-## Fichiers produits et tailles
+Le lecteur ouvre **VIDEO.STV** s'il le trouve ; sinon, il vous propose de
+choisir un fichier. Le son est déjà inclus dans le **STV** : pour lire sur
+l'Atari, seuls ce fichier et **STFPLAY.PRG** sont nécessaires.
 
-Un nom déjà présent reçoit un numéro automatiquement : `VIDEO.STV`,
-`VIDEO001.STV`, etc. Les sorties existantes ne sont pas écrasées.
-Le journal affiche le nom retenu. Les fichiers associés portent ce préfixe :
+## Où sont les fichiers, et quelle place prennent-ils ?
 
-- `<NOM>.STV` : fichier à jouer avec STFPLAY, son inclus.
-- `<NOM>.LAV` : export STEAV2 historique ; il reste à **25 images/s**, même
-  si le STV est en 12,5 images/s. Il vise les lecteurs LAV compatibles.
-- `<NOM>-AUDIO<fréquence>.WAV` : audio PCM mono séparé pour comparaison.
-- `<NOM>-PREVIEW.png`, `-PREVIEW.gif`, `-COMPARAISON.png` : aperçus.
-- `<NOM>-REPORT.json` : paramètres, cadence et débit du STV.
-- `STFPLAY.PRG` : lecteur commun, copié dans le dossier de sortie.
+Tout est enregistré dans le dossier choisi dans l'encodeur. Par défaut,
+il s'agit de **Vidéos/STVideo** dans votre profil Windows.
 
-Le STV occupe environ **24,6 Mo/minute** à 12,5 images/s, **49,2 Mo/minute**
-à 25 images/s, plus un en-tête de 32 Kio. Le dossier complet est plus gros,
-car le LAV et les aperçus sont aussi produits. La limite de fichier TOS de
-2 Gio impose de découper les longs contenus avec Début/Durée ; l'enchaînement
-automatique de plusieurs parties n'est pas implémenté.
+Le fichier **<NOM>.STV** est celui à lire avec STFPLAY. L'encodeur produit
+aussi un export **LAV**, un fichier audio **WAV**, des aperçus et un rapport
+**JSON** avec les réglages utilisés. L'export LAV reste à **25 images/s**,
+même si vous avez choisi 12,5 images/s pour le STV.
 
-Une URL nécessite Internet et dépend des sites, de leurs accès et du support
-de yt-dlp. Le fonctionnement des fichiers locaux ne dépend pas d'Internet.
-Si une URL échoue, utiliser un fichier local. L'application ne contourne pas
-les restrictions d'accès à un contenu.
+Comptez environ **24,6 Mo par minute à 12,5 images/s** et **49,2 Mo par minute
+à 25 images/s** pour le STV. Avec les autres fichiers, le dossier complet
+prend davantage de place. Pour un long film, utilisez **Début** et **Durée**
+pour faire plusieurs parties avant d'atteindre la limite de fichier de 2 Gio.
+Le lecteur n'enchaîne pas encore les parties automatiquement.
 
-## Développer et reconstruire
+Si une URL ne fonctionne pas, essayez une vidéo déjà présente sur votre PC.
+La conversion d'un fichier local fonctionne sans connexion Internet.
+
+## Pour ceux qui veulent aller plus loin
+
+Le lecteur est écrit en **assembleur 68000** et l'encodeur en **Python**, avec
+FFmpeg pour préparer la vidéo et le son. Le PC fait les gros calculs :
+l'Atari lit des images et un son déjà préparés pour lui.
+
+- [Guide STF](docs/GUIDE-STF.txt), également disponible dans l'application.
+- [Comment construire la version Windows](docs/BUILD-WINDOWS.md).
+- [Description du format STV](docs/FORMAT-STV.md).
+- [Détails des essais et des mesures](docs/VALIDATION.md).
 
 Avec Python 3.12 x64 sous Windows :
 
@@ -153,28 +145,21 @@ python -m venv .venv
 .venv\Scripts\python.exe tools\build_windows.py --inno "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 ```
 
-Le lecteur précompilé est dans `player/STFPLAY.PRG`, avec son source dans
+Le lecteur compilé se trouve dans `player/STFPLAY.PRG` et son source dans
 `src/player.s`. Pour le reconstruire avec vasm :
 
 ```powershell
 powershell -File tools\build.ps1 -Assembler "C:\outils\vasmm68k_mot.exe"
 ```
 
-Le mode ligne de commande garde tous les réglages accessibles :
+Le modèle `packaging/github-actions-windows.yml` est fourni pour ceux qui
+souhaitent configurer une construction Windows dans GitHub Actions.
+Il faut l'installer dans `.github/workflows/` pour l'activer.
 
-```powershell
-.venv\Scripts\python.exe tools\encode.py clip.mp4 -o sorties --stf-fps 12.5 --dither ordered --quality perceptual --audio-codec optimal
-```
+## Crédits
 
-Voir [la construction Windows](docs/BUILD-WINDOWS.md),
-[le format STV](docs/FORMAT-STV.md) et [les validations](docs/VALIDATION.md).
-Le modèle `packaging/github-actions-windows.yml` peut construire les distributions Windows une fois installé dans `.github/workflows/` par le propriétaire du dépôt ; les clips
-personnels, chemins de développement et outils propriétaires sont exclus
-de l'archive source préparée. Rien n'est publié automatiquement sur GitHub.
-
-## Licence et crédits
-
-GPL-2.0-or-later ; voir [LICENSE](LICENSE) et [THIRD_PARTY.md](THIRD_PARTY.md).
-La table de niveaux YM mesurée par Paulo Simoes est distribuée avec Hatari.
-Les médias de l'utilisateur ne sont pas placés sous cette licence.
-Les logiciels LAV historiques et les ROM TOS ne sont pas redistribués.
+**David Ascenso — ST Vidéo.** Sources sous GPL-2.0-or-later : voir
+[LICENSE](LICENSE) et [les composants tiers](THIRD_PARTY.md).
+Merci à Paulo Simoes pour la table de niveaux YM distribuée avec Hatari.
+Les vidéos personnelles, émulateurs, ROM TOS et anciens lecteurs LAV ne sont
+pas fournis. La licence du programme ne change pas les droits sur vos vidéos.

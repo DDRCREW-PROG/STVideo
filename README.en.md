@@ -1,96 +1,134 @@
-# ST Vidéo
+# ST Vidéo — PC-to-Atari ST video encoder
 
-[Français](README.md) · **English**
+The idea is simple: take a video on your PC, convert it, then watch it on
+an Atari ST with sound. That's what ST Vidéo is for.
 
-I'm **David Ascenso**. I started this project with my Atari video encoder,
-player and real-machine experiments. This version adds a Windows interface,
-optimised palettes and improved STF audio. It offers 320 × 200 video,
-16 colours from the ST’s 512-colour grid, mono audio and PAL playback
-at **12.5 or 25 fps**.
+I'm **David Ascenso**. I already had my own Atari video encoder and player.
+I wanted to make them easier to use and improve the picture and sound,
+while still running on an **8 MHz ST**.
 
-Download the Windows [installer or portable edition](https://github.com/DDRCREW-PROG/STVideo/releases/latest).
+The encoder runs on **Windows 10 and 11, in French and English**. It prepares
+**320 × 200 video with 16 colours** and creates a file to copy to your Atari.
+The **STFPLAY.PRG** player is included. Playback works on **ST, STF and STE
+machines with 512 KB of RAM or more**, in PAL.
 
-## Windows installation
+**[Download the installer or portable version](https://github.com/DDRCREW-PROG/STVideo/releases/latest)** · [Lire en français](README.md)
 
-- `STVideo-1.0.1-Setup.exe`: Windows 10/11 x64 installer, for the current
-  user, with a Start menu shortcut and an uninstaller.
-- `STVideo-1.0.1-Windows-portable.zip`: extract the folder and run `STVideo.exe`.
-- `STVideo-1.0.1-sources.zip`: source code, Atari player and build instructions.
+## How it runs on my STF
 
-Python and FFmpeg are bundled. Choose **English** in the **Langue / Language**
-selector at the top of the application. Your language choice is remembered.
-The installer also offers French and English.
+I tested the player on my **Atari STF with 1 MB of RAM**, using **ACSI storage
+with an SD card**. The program also works with **512 KB**.
 
-## Recommended STF settings
+At **12.5 frames per second**, it runs well and looks surprisingly smooth.
+At **25 fps**, playback slows down on my setup because the storage cannot
+keep up. That's why I recommend starting with 12.5 fps on an STF.
 
-Click **Recommended STF / ACSI settings**. This selects:
+The video still plays at its normal speed and keeps its original duration.
+It simply displays fewer pictures each second.
 
-- **12.5 fps**;
-- **Fixed pattern (stable)** dithering;
-- **Optimised ST palette**;
-- **Optimised STF audio (slower encoding)**;
-- Light audio cleanup and quiet-source boost.
+The file needs about **410 kB/s at 12.5 fps**, or **819 kB/s at 25 fps**.
+Even storage advertised at 800–900 kB/s can struggle once access delays and
+the driver are taken into account. Hatari tests also used 8 MHz and 512 KB,
+but an emulator cannot tell you how fast your real ACSI drive will be.
 
-“Slower encoding” means additional calculation on the PC, not slow-motion
-playback. Start with **Try a 5-second preview**, then test the STV on your
-actual Atari before encoding a longer clip. Copy `<NAME>.STV` and the supplied
-`STFPLAY.PRG` to Atari storage. Run the player in colour low resolution on PAL.
-**Right Shift** opens the file selector; **Escape** exits.
+## Install it and try a clip
 
-See the integrated **STF guide** tab or [the English guide](docs/GUIDE-STF.en.txt).
+Choose a download from the [release page](https://github.com/DDRCREW-PROG/STVideo/releases/latest):
 
-## Real-machine results and storage speed
+- **Setup.exe**: the Windows installer, with shortcuts and an uninstaller.
+- **Windows-portable.zip**: extract the folder and run **STVideo.exe**.
+- **sources.zip**: the source code if you want to see how it works or make changes.
 
-I tested playback on my STF with ACSI/SD storage: 25 fps slows down, while
-12.5 fps works well. These results describe my setup; other STF machines
-and ACSI interfaces may behave differently.
+Python and FFmpeg are included, so you don't need to install them separately.
+Use **Langue / Language** at the top of the window to switch languages.
+The application remembers your choice.
 
-| STV rate | Sustained file data, excluding delays |
-| --- | --- |
-| 12.5 fps | 409,600 bytes/s, about 410 kB/s |
-| 25 fps | 819,200 bytes/s, about 819 kB/s |
+1. Choose a video on your PC. You can also try a video URL; support depends on the site.
+2. For an STF, click **Recommended STF / ACSI settings**.
+3. Choose an output folder and give the clip a short Atari name: **1 to 8 characters**.
+4. Click **Try a 5-second preview** to check the result before converting the whole video.
+5. Encode it, then copy **<NAME>.STV** and **STFPLAY.PRG** to your Atari drive.
+6. Run **STFPLAY.PRG** in colour low resolution on a PAL Atari.
 
-A nominal 800–900 kB/s leaves little headroom at 25 fps. Drivers, latency and
-file-system pauses matter. I did not record my STF's RAM size during this test;
-emulator tests include 8 MHz and 512 KB. Hatari’s host-folder drive does not
-represent physical ACSI throughput.
+Five-second previews go into the **APERCU** subfolder. If a clip name already
+exists, the encoder adds a number and keeps your previous files.
 
-The film keeps its original duration at 12.5 fps. Audio is prepared at
-8,192 Hz, compared with 12,288 Hz at 25 fps. Smoothness depends on motion.
+## Settings I recommend
 
-## Audio modes
+For an STF, start with **12.5 fps**, **Fixed pattern (stable)** dithering,
+**Optimised ST palette** and **Optimised STF audio (slower encoding)**.
+The recommended-settings button chooses these for you.
 
-| Setting | STF | STE |
-| --- | --- | --- |
-| Optimised STF audio | Continuous, precalculated YM commands (STV3) | Same YM output; no DMA |
-| Optimised STE audio | Classic YM playback (STV1) | Automatic DMA PCM output |
-| Lightweight YM | Experimental single-write YM (STV2) | Same YM output |
+“Slower encoding” means more preparation time on the PC. It does not slow
+down playback on the Atari.
 
-An STF-optimised clip does not switch to DMA on an STE. Encode again using
-the STE setting for its cleaner DMA output. The STE still needs sufficient
-storage throughput; 12.5 fps can be selected with STE audio too.
+The optimised palette chooses 16 colours suited to the picture from the
+**ST's 512 colours**. Dithering uses small patterns to make gradients look
+smoother. **Fixed pattern** is a good starting point. For cartoons, text
+and flat colours, try **No dithering** too. Compare a short preview: the
+best-looking choice depends on the video.
 
-The PC does all colour optimisation, filtering and audio preparation. The
-68000 player reads native bitplanes and prepared audio rather than decoding
-a compressed modern video. Optimisation reduces some YM artefacts, but
-does not make STF audio equivalent to the STE DAC.
+**Sharper** can bring out detail. **Very sharp** goes further, but can add
+obvious outlines or halos. Video noise reduction softens grain; turn it
+down or off if it removes detail you want to keep.
 
-## Outputs
+## Which audio setting should I use?
 
-Existing clips are never overwritten: names receive an automatic numeric
-suffix. STV includes its audio. The LAV export is separate and **always
-remains at 25 fps**. WAVs, image previews and a JSON report are also generated.
-Preview runs use the `APERCU` subfolder.
+On an **STF**, choose **Optimised STF audio**. The PC prepares the sound for
+the Atari's YM2149 chip. This reduces some of the crackle, although it won't
+sound as clean as an STE.
 
-STV occupies about 24.6 MB/minute at 12.5 fps or 49.2 MB/minute at 25 fps.
-The full Windows output folder is larger because of the other exports.
-Split long content with Start/Duration before the 2 GiB file limit.
-Local files work offline; URL input depends on Internet access and yt-dlp’s
-support for the site. No personal clips, emulator or TOS ROM is distributed.
+On an **STE**, choose **Optimised STE audio** to use its cleaner DMA audio
+output. A clip encoded for STF still uses YM sound when played on an STE.
+To get DMA sound, encode it again with the STE setting.
 
-## Build from source
+Start with **Light** audio cleanup. **Strong** may help a noisy recording,
+but can remove treble too. Quiet-source boost raises low volume, with a
+maximum gain of roughly +12 dB. **Lightweight YM** is experimental; I
+recommend the optimised STF mode for normal use.
 
-Use Python 3.12 x64 on Windows:
+The STE still needs fast enough storage. You can choose 12.5 fps with STE
+audio if your drive struggles at 25 fps.
+
+## Playing a video on the Atari
+
+- **Right Shift**: stop the video and choose another STV file.
+- **Escape**: exit the player. Cancelling the file selector also exits.
+
+The player opens **VIDEO.STV** if it finds it; otherwise, it asks you to
+choose a file. Sound is already inside the **STV**. For Atari playback,
+you only need that file and **STFPLAY.PRG**.
+
+## Where do the files go, and how big are they?
+
+Everything goes into the output folder you choose. The default is
+**Videos/STVideo** inside your Windows user folder.
+
+Play **<NAME>.STV** with STFPLAY. The encoder also creates a **LAV** export,
+a **WAV** audio file, image previews and a **JSON** report containing your
+settings. LAV export stays at **25 fps**, even when you choose 12.5 fps for STV.
+
+Allow about **24.6 MB per minute at 12.5 fps**, or **49.2 MB per minute at
+25 fps**, for the STV file. The other exports take additional space.
+For a long film, use **Start** and **Duration** to create separate parts
+before reaching the 2 GiB file limit. The player does not yet play split
+parts automatically.
+
+If a URL fails, try a video already stored on your PC. Local-file conversion
+works without an Internet connection.
+
+## Want to look under the hood?
+
+The player is written in **68000 assembly**, and the encoder in **Python**,
+using FFmpeg to prepare the video and sound. The PC does the heavy work;
+the Atari reads pictures and audio already prepared for it.
+
+- [STF guide](docs/GUIDE-STF.en.txt), also available inside the application.
+- [Windows build instructions](docs/BUILD-WINDOWS.md).
+- [STV format](docs/FORMAT-STV.md).
+- [Tests and measurements](docs/VALIDATION.md).
+
+With Python 3.12 x64 on Windows:
 
 ```powershell
 python -m venv .venv
@@ -100,14 +138,16 @@ python -m venv .venv
 .venv\Scripts\python.exe tools\build_windows.py --inno "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 ```
 
-The supplied Atari binary is in `player/STFPLAY.PRG`; assembly source is in
-`src/player.s`. Rebuild it using vasm and `tools/build.ps1 -Assembler <path>`.
-The Windows build produces a standalone executable, portable/source ZIPs,
-an optional Inno Setup installer and SHA-256 checksums in `dist`.
+The compiled Atari player is in `player/STFPLAY.PRG`, with its source in
+`src/player.s`. Rebuild it with vasm using `tools/build.ps1 -Assembler <path>`.
+The template `packaging/github-actions-windows.yml` is included if you want
+to set up Windows builds in GitHub Actions. Install it in `.github/workflows/`
+to activate it.
 
-The template `packaging/github-actions-windows.yml` can build Windows packages after the repository owner installs it in `.github/workflows/`. Development captures,
-personal paths, video clips and ROMs are excluded from the source archive.
+## Credits
 
-GPL-2.0-or-later: see [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY.md).
-This does not change the rights applying to users’ media. The measured YM
-level table is credited to Paulo Simoes and distributed with Hatari.
+**David Ascenso — ST Vidéo.** Source code is GPL-2.0-or-later: see
+[LICENSE](LICENSE) and [third-party credits](THIRD_PARTY.md).
+Thanks to Paulo Simoes for the measured YM level table distributed with Hatari.
+Personal videos, emulators, TOS ROMs and legacy LAV players are not included.
+The program's licence does not change the rights applying to your videos.

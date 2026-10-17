@@ -2,11 +2,12 @@
 
 ## Matériel réel
 
-J'ai testé la lecture sur mon STF avec stockage ACSI sur carte SD.
-À 25 images/s, la lecture ralentit ; à 12,5 images/s, elle fonctionne bien
-et je trouve le résultat fluide. Le débit annoncé du stockage est de 800 à 900 ko/s.
-Je n'ai pas consigné la RAM exacte, le modèle d'interface et le pilote lors de cet essai.
-Ce n'est donc pas une certification de toutes les configurations STF.
+J'ai testé le lecteur sur mon **Atari STF avec 1 Mo de RAM**, équipé d'un
+**disque ACSI sur carte SD**. Le programme fonctionne aussi avec **512 Ko**.
+À 12,5 images/s, la lecture fonctionne bien et je trouve le résultat fluide.
+À 25 images/s, elle ralentit sur mon installation. Le débit annoncé du
+stockage est de 800 à 900 ko/s ; le pilote et les temps d'accès comptent aussi.
+Le modèle exact d'interface et le pilote ne sont pas précisés ici.
 
 ## Émulation
 
