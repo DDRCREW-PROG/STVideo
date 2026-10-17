@@ -2,10 +2,11 @@
 
 [Français](README.md) · **English**
 
-Windows video encoder and Atari ST / STF / STE player by **David Ascenso**.
-320 × 200, 16 colours from the ST’s 512-colour grid, mono audio and PAL
-playback at **12.5 or 25 fps**. Developed from David’s existing Atari video
-encoder, player and real-machine experiments.
+I'm **David Ascenso**. I started this project with my Atari video encoder,
+player and real-machine experiments. This version adds a Windows interface,
+optimised palettes and improved STF audio. It offers 320 × 200 video,
+16 colours from the ST’s 512-colour grid, mono audio and PAL playback
+at **12.5 or 25 fps**.
 
 Download the Windows [installer or portable edition](https://github.com/DDRCREW-PROG/STVideo/releases/latest).
 
@@ -40,8 +41,9 @@ See the integrated **STF guide** tab or [the English guide](docs/GUIDE-STF.en.tx
 
 ## Real-machine results and storage speed
 
-On David Ascenso’s STF with ACSI/SD storage, 25 fps slows down while 12.5 fps
-works well. These results describe his setup, not every STF or ACSI interface.
+I tested playback on my STF with ACSI/SD storage: 25 fps slows down, while
+12.5 fps works well. These results describe my setup; other STF machines
+and ACSI interfaces may behave differently.
 
 | STV rate | Sustained file data, excluding delays |
 | --- | --- |
@@ -49,7 +51,7 @@ works well. These results describe his setup, not every STF or ACSI interface.
 | 25 fps | 819,200 bytes/s, about 819 kB/s |
 
 A nominal 800–900 kB/s leaves little headroom at 25 fps. Drivers, latency and
-file-system pauses matter. The physical test’s RAM size was not recorded;
+file-system pauses matter. I did not record my STF's RAM size during this test;
 emulator tests include 8 MHz and 512 KB. Hatari’s host-folder drive does not
 represent physical ACSI throughput.
 

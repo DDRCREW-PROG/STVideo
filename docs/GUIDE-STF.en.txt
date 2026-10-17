@@ -47,8 +47,8 @@ These figures exclude the header and file-system delays. The ACSI interface,
 driver, SD card and read latency all matter. An advertised 800–900 kB/s
 leaves little headroom at 25 fps.
 
-David Ascenso’s real-machine test: playback on his STF with ACSI/SD storage
-slows down at 25 fps and works well at 12.5 fps. This validates that setup,
+I tested playback on my STF with ACSI/SD storage: it slows down at 25 fps
+and works well at 12.5 fps. These results apply to my setup,
 not every Atari storage interface. The RAM size of the physical test was
 not recorded. The player has also been tested in Hatari at 8 MHz with 512 KB.
 

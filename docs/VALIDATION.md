@@ -2,10 +2,10 @@
 
 ## Matériel réel
 
-Retour de David Ascenso : STF avec stockage ACSI sur carte SD. À 25 images/s,
-la lecture ralentit ; à 12,5 images/s, elle fonctionne bien, avec une fluidité
-jugée satisfaisante. Le débit annoncé du stockage est de 800 à 900 ko/s.
-La RAM exacte, le modèle d'interface et le pilote n'ont pas été consignés.
+J'ai testé la lecture sur mon STF avec stockage ACSI sur carte SD.
+À 25 images/s, la lecture ralentit ; à 12,5 images/s, elle fonctionne bien
+et je trouve le résultat fluide. Le débit annoncé du stockage est de 800 à 900 ko/s.
+Je n'ai pas consigné la RAM exacte, le modèle d'interface et le pilote lors de cet essai.
 Ce n'est donc pas une certification de toutes les configurations STF.
 
 ## Émulation

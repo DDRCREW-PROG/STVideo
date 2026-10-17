@@ -3,26 +3,26 @@
 Encodeur Windows et lecteur Atari ST / STF / STE : **320 × 200, 16 couleurs
 parmi les 512 du ST, son mono et lecture PAL à 12,5 ou 25 images/s**.
 
-Projet de **David Ascenso**, développé à partir de son encodeur, de son lecteur
-et de ses premiers essais de vidéo sur Atari. Cette version ajoute une
-interface, des palettes optimisées, le traitement audio et la restitution
-YM anticipée sur STF. Le lecteur fourni, `STFPLAY.PRG`, est écrit en
+Je suis **David Ascenso**. J'ai lancé ce projet à partir de mon encodeur,
+de mon lecteur et de mes premiers essais de vidéo sur Atari. Avec cette
+version, j'ai voulu aller plus loin : une interface, des palettes optimisées,
+le traitement audio et la restitution YM anticipée sur STF. Le lecteur fourni, `STFPLAY.PRG`, est écrit en
 assembleur 68000 ; l'encodeur est écrit en Python et utilise FFmpeg.
 
 ## Résultat sur un vrai STF
 
-David Ascenso a testé la lecture sur **STF avec disque ACSI sur carte SD** :
+J'ai testé la lecture sur mon **STF avec disque ACSI sur carte SD** :
 
-| Réglage STV | Débit du fichier | Résultat rapporté |
+| Réglage STV | Débit du fichier | Résultat de mes essais |
 | --- | --- | --- |
-| 12,5 images/s | 409 600 octets/s, environ 410 ko/s | Lecture fonctionnelle, résultat jugé fluide |
+| 12,5 images/s | 409 600 octets/s, environ 410 ko/s | Lecture fluide lors de mes essais |
 | 25 images/s | 819 200 octets/s, environ 819 ko/s | Ralentissements sur ce stockage |
 
-Ce constat concerne cette machine et ce stockage. Un débit annoncé à
+Ces résultats correspondent à ma machine et à mon stockage. Un débit annoncé à
 800–900 ko/s laisse peu de marge à 25 images/s : les pauses de lecture,
 le pilote et le système de fichiers comptent aussi. **Commencez à 12,5
-images/s sur STF.** La quantité de RAM de l'essai physique n'a pas été
-consignée ; les essais d'émulation ont notamment utilisé 512 Ko et 8 MHz.
+images/s sur STF.** Je n'ai pas consigné la quantité de RAM de mon STF lors de cet essai.
+Les essais sous Hatari ont notamment été réalisés avec 512 Ko et à 8 MHz.
 Hatari avec un dossier Windows ne mesure pas les performances ACSI réelles.
 
 Télécharger la version Windows : [installateur et version portable](https://github.com/DDRCREW-PROG/STVideo/releases/latest).

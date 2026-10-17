@@ -1,6 +1,6 @@
 # Composants tiers
 
-ST Vidéo est un projet de David Ascenso. Le code du lecteur 68000 et l'encodeur
+Je suis David Ascenso, à l'origine du projet ST Vidéo. Le code du lecteur 68000 et l'encodeur
 sont fournis sous GPL-2.0-or-later ; voir `LICENSE`. Cette licence ne change
 pas les droits sur les vidéos utilisées ou produites par l'utilisateur.
 
@@ -27,7 +27,7 @@ vasm sert uniquement à recompiler le lecteur. Il n'est pas embarqué dans
 l'application ni dans les sources préparées pour GitHub. Son utilisation
 reste soumise à sa propre licence : http://sun.hasenbraten.de/vasm/.
 
-LAVP2, LAVMOD, STEAV, Hatari, les ROM TOS et les clips de test de David Ascenso
+LAVP2, LAVMOD, STEAV, Hatari, les ROM TOS et mes clips de test
 ne sont pas inclus dans les distributions de ST Vidéo. L'export STEAV2
 est une fonction d'interopérabilité ; aucun code de ces lecteurs n'est
 nécessaire au fonctionnement de STFPLAY.

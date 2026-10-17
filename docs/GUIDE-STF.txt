@@ -46,8 +46,8 @@ Ces valeurs excluent l’en-tête et les pauses du système de fichiers.
 Le pilote, l’interface ACSI, la carte SD et les latences comptent aussi.
 Un débit annoncé de 800 à 900 ko/s laisse peu de marge à 25 images/s.
 
-Essai réel rapporté par David Ascenso : la lecture sur STF avec disque ACSI sur
-carte SD ralentit à 25 images/s ; elle fonctionne bien à 12,5 images/s.
+J'ai testé la lecture sur mon STF avec disque ACSI sur carte SD :
+elle ralentit à 25 images/s et fonctionne bien à 12,5 images/s.
 C’est une validation sur cette configuration, pas une garantie sur toutes
 les interfaces ou tous les STF. La quantité de RAM de ce test n’a pas été
 consignée. Le lecteur a aussi été testé sous Hatari avec 512 Ko et 8 MHz.
