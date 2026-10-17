@@ -82,6 +82,6 @@ def main():
     files=[p for p in (ROOT/'dist').iterdir() if p.is_file()]
     sums='\n'.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name for p in files if p.name!='SHA256SUMS.txt')+'\n'
     (ROOT/'dist/SHA256SUMS.txt').write_text(sums,encoding='ascii')
-    print('Distribution prÃªte :',ROOT/'dist',flush=True)
+    print('Distribution prête :',ROOT/'dist',flush=True)
 
 if __name__=='__main__':main()

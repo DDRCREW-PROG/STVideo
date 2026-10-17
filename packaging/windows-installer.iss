@@ -3,11 +3,11 @@
 #endif
 [Setup]
 AppId={{781F7313-7FF8-434C-A4CA-CF71D1141F5B}
-AppName=ST VidÃ©o
+AppName=ST Vidéo
 AppVersion=1.0.1
 AppPublisher=David Ascenso
 DefaultDirName={localappdata}\Programs\STVideo
-DefaultGroupName=ST VidÃ©o
+DefaultGroupName=ST Vidéo
 PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
@@ -29,11 +29,11 @@ french.DesktopIcon=Créer un raccourci sur le Bureau
 english.LaunchProgram=Launch ST Vidéo
 french.LaunchProgram=Lancer ST Vidéo
 [Tasks]
-Name: "desktopicon"; Description: "CrÃ©er un raccourci sur le Bureau"; Flags: unchecked
+Name: "desktopicon"; Description: "Créer un raccourci sur le Bureau"; Flags: unchecked
 [Files]
 Source: "{#AppSource}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 [Icons]
-Name: "{autoprograms}\ST VidÃ©o"; Filename: "{app}\STVideo.exe"
-Name: "{autodesktop}\ST VidÃ©o"; Filename: "{app}\STVideo.exe"; Tasks: desktopicon
+Name: "{autoprograms}\ST Vidéo"; Filename: "{app}\STVideo.exe"
+Name: "{autodesktop}\ST Vidéo"; Filename: "{app}\STVideo.exe"; Tasks: desktopicon
 [Run]
-Filename: "{app}\STVideo.exe"; Description: "Lancer ST VidÃ©o"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\STVideo.exe"; Description: "Lancer ST Vidéo"; Flags: nowait postinstall skipifsilent
