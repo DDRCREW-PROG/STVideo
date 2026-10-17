@@ -1,0 +1,110 @@
+GETTING STARTED ON A REAL ATARI STF
+
+1. Select the STF / ACSI profile
+
+On the Encoding tab, click “Recommended STF / ACSI settings”.
+This selects:
+• Frame rate: 12.5 frames per second.
+• Dithering: Fixed pattern (stable).
+• Palette: Optimised ST palette.
+• Audio: Optimised STF audio (slower encoding).
+• Audio cleanup: Light; quiet-source boost enabled.
+
+“Slower encoding” refers to processing time on the PC, not slower playback.
+You can change individual settings after applying a profile.
+Use the Language selector at the top to switch between French and English.
+The choice is remembered; changing language preserves your encoding settings.
+
+2. Start with a short preview
+
+Choose a local video (AVI, MP4, WEBM and other formats supported by FFmpeg),
+an output folder and an Atari clip name containing 1 to 8 characters.
+“Try a 5-second preview” writes its output to an APERCU subfolder.
+“Encode video” processes the selected duration or the entire source file.
+If a name already exists, a number is added automatically. Existing clips
+are not overwritten. The chosen name appears in the log.
+
+3. Copy the files and play them on the Atari
+
+Copy <NAME>.STV and STFPLAY.PRG to the Atari’s storage, on the same partition.
+Run STFPLAY.PRG in colour low resolution on a PAL machine.
+If VIDEO.STV exists, it starts automatically; otherwise, a file selector opens.
+
+Right Shift: stop playback and select another STV file.
+Escape: exit. Cancelling the file selector also exits.
+The LAV and WAV files are not needed for STV playback: audio is already
+included in the STV. Always use the supplied player, especially for the
+STV3 format produced by the optimised STF audio setting.
+
+4. Why recommend 12.5 fps?
+
+Pictures are prepared as native ST bitplanes. The Atari does not decode
+a modern compressed video, but it must read 32,768 bytes for every picture.
+
+12.5 fps: 409,600 bytes/s, about 410 kB/s (400 KiB/s).
+25 fps: 819,200 bytes/s, about 819 kB/s (800 KiB/s).
+These figures exclude the header and file-system delays. The ACSI interface,
+driver, SD card and read latency all matter. An advertised 800–900 kB/s
+leaves little headroom at 25 fps.
+
+David Ascenso’s real-machine test: playback on his STF with ACSI/SD storage
+slows down at 25 fps and works well at 12.5 fps. This validates that setup,
+not every Atari storage interface. The RAM size of the physical test was
+not recorded. The player has also been tested in Hatari at 8 MHz with 512 KB.
+
+At 12.5 fps, pictures change every four PAL vertical blanks rather than two.
+The film retains its normal duration. Perceived smoothness depends on motion.
+STV audio is prepared at 8,192 Hz rather than 12,288 Hz at 25 fps, so audio
+bandwidth is also part of the trade-off. The separate LAV export always
+remains at 25 fps, regardless of the STV frame-rate setting.
+
+5. Getting the best colours
+
+The optimised palette searches for 16 colours from the ST’s 512-colour grid.
+Fixed dithering uses an ordered pattern rather than error diffusion. This
+can reduce pattern shimmer, but results depend on the source and palette
+changes. “Fixed” describes the pattern, not a permanently fixed palette.
+Neither palette optimisation nor dithering changes the storage bitrate.
+
+For cartoons, text and flat artwork, try No dithering.
+For gradients, compare Fixed pattern and Adaptive pattern using a preview.
+Sharper can improve detail; Very sharp can introduce halos.
+Video noise reduction reduces grain but may remove fine detail.
+
+6. STF and STE audio are different
+
+The STF reconstructs sampled audio by changing the YM2149 channel volumes.
+The optimised STF mode calculates a sequence of volume commands on the PC.
+The player then streams them continuously with gentle timing corrections.
+This reduces some artefacts but cannot provide the STE’s dedicated DMA DAC.
+
+Optimised STE audio keeps PCM samples. STFPLAY detects an STE and uses
+its cleaner DMA audio output. The same file on an STF uses the older,
+usually grainier, classic YM playback.
+A clip encoded with the STF setting still uses YM playback on an STE.
+To obtain STE DMA audio, encode it again using Optimised STE audio.
+
+Start with Light audio cleanup. Strong may remove too much treble.
+Quiet-source boost limits amplification to roughly +12 dB. These filters
+cannot remove all analogue hardware noise or late-interrupt artefacts.
+
+7. If playback slows down
+
+Use 12.5 fps and encode again. Changing a setting does not modify existing
+files. Copy the newly generated STV to the Atari. The <NAME>-REPORT.json
+file records stf_fps and stf_bytes_per_second for checking.
+If 12.5 fps still slows down, check sustained storage speed, driver latency
+and the machine configuration. Hatari’s Windows-folder drive does not
+measure the throughput or latency of a real ACSI device.
+On the STE, DMA improves audio, not disk speed; 12.5 fps may still be needed.
+
+8. File sizes and limits
+
+One minute of STV is approximately 24.6 MB at 12.5 fps or 49.2 MB at 25 fps.
+The Windows output folder is larger because LAV, WAV and preview files are
+also generated. Split long content using Start and Duration before reaching
+the 2 GiB TOS file-size limit. Automatic playback of split parts is not
+implemented in this version.
+
+URL input requires Internet access and depends on the site and yt-dlp’s
+support. If a URL fails, use an available local video file instead.

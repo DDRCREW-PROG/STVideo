@@ -1,0 +1,108 @@
+BIEN DÉMARRER SUR UN VRAI ATARI STF
+
+1. Choisir le profil STF / ACSI
+
+Dans l’onglet Encodage, cliquer sur « Réglages STF / ACSI conseillés ».
+Le profil choisit :
+• Cadence : 12,5 images par seconde.
+• Tramage : Trame fixe (stable).
+• Palette : Palette ST optimisée.
+• Son : Réglage audio optimisé pour STF (plus lent).
+• Nettoyage du son : Léger ; renforcement des sources faibles activé.
+
+« Plus lent » concerne le précalcul sur le PC, pas la vitesse du film.
+Les paramètres restent modifiables après l’application du profil.
+
+2. Commencer par un extrait
+
+Choisir une vidéo locale (AVI, MP4, WEBM… selon les codecs disponibles),
+puis le dossier de sortie et un nom court, de 1 à 8 caractères Atari.
+Le bouton « Essayer sur 5 secondes » crée les résultats dans APERCU.
+Le bouton « Encoder la vidéo » traite la durée choisie ou tout le fichier.
+Un nom déjà utilisé reçoit automatiquement un numéro : aucun ancien clip
+n’est remplacé. Le nom effectivement choisi apparaît dans le journal.
+
+3. Copier et lire sur Atari
+
+Copier le fichier <NOM>.STV et STFPLAY.PRG sur le stockage du STF,
+dans la même partition. Lancer STFPLAY.PRG en basse résolution couleur,
+sur une machine PAL. S’il existe un VIDEO.STV, le lecteur l’ouvre ; sinon,
+il affiche le sélecteur de fichiers.
+
+Shift droit : arrêter la lecture et choisir un autre fichier STV.
+Échap : quitter. Annuler le sélecteur : quitter.
+L’export LAV et les WAV sont facultatifs pour cette lecture : le son est
+déjà dans le STV. Toujours utiliser le lecteur fourni avec cet encodeur,
+en particulier pour l’audio STF anticipé (format STV3).
+
+4. Pourquoi conseiller 12,5 images/s ?
+
+Les images sont préparées en bitplanes natifs : le ST ne décompresse pas
+une vidéo moderne. Il doit cependant lire 32 768 octets par image.
+
+12,5 images/s : 409 600 octets/s, soit environ 410 ko/s (400 Kio/s).
+25 images/s : 819 200 octets/s, soit environ 819 ko/s (800 Kio/s).
+Ces valeurs excluent l’en-tête et les pauses du système de fichiers.
+Le pilote, l’interface ACSI, la carte SD et les latences comptent aussi.
+Un débit annoncé de 800 à 900 ko/s laisse peu de marge à 25 images/s.
+
+Essai réel rapporté par David Ascenso : la lecture sur STF avec disque ACSI sur
+carte SD ralentit à 25 images/s ; elle fonctionne bien à 12,5 images/s.
+C’est une validation sur cette configuration, pas une garantie sur toutes
+les interfaces ou tous les STF. La quantité de RAM de ce test n’a pas été
+consignée. Le lecteur a aussi été testé sous Hatari avec 512 Ko et 8 MHz.
+
+À 12,5 images/s, les images sont renouvelées toutes les quatre VBL PAL ;
+le film garde sa durée normale. La fluidité perçue dépend des mouvements.
+Le son STV est préparé à 8 192 Hz au lieu de 12 288 Hz à 25 images/s :
+la cadence et la bande passante audio font donc aussi partie du compromis.
+L’export LAV reste à 25 images/s, quel que soit le réglage STV.
+
+5. Bien choisir les couleurs
+
+La palette optimisée cherche 16 couleurs parmi les 512 couleurs du ST.
+La trame fixe mélange les couleurs avec un motif régulier, ce qui évite
+les variations de motif de la diffusion d’erreur. Cela peut limiter le
+scintillement ; le résultat dépend de la source et des changements de palette.
+Ce réglage ne change pas le nombre de couleurs affichées ni le débit disque.
+La palette peut changer selon le plan : « fixe » décrit le motif de trame.
+
+Pour les dessins animés ou les textes, essayer Sans dithering.
+Pour les dégradés, comparer Trame fixe et Trame adaptative sur cinq secondes.
+La netteté Plus nette peut aider ; Très nette peut créer des halos.
+Le nettoyage vidéo atténue le grain, mais peut effacer de petits détails.
+
+6. STF et STE : deux sorties audio
+
+Le STF restitue les échantillons en pilotant les volumes du YM2149.
+Le mode optimisé STF précalcule l’enchaînement des commandes sur le PC,
+puis le lecteur les joue en continu avec une correction douce de cadence.
+Il réduit certains parasites mais ne transforme pas le YM en DAC du STE.
+
+Le mode Audio optimisé pour STE garde du PCM ; STFPLAY détecte le STE et
+utilise sa sortie DMA, plus propre. Sur STF, ce même fichier est lu avec
+l’ancienne restitution YM, généralement plus granuleuse.
+Un fichier encodé avec le mode STF reste en YM quand il est lu sur STE.
+Pour obtenir le son DMA du STE, il faut donc réencoder avec le réglage STE.
+
+7. Si la lecture ralentit
+
+Revenir à 12,5 images/s. Vérifier que le fichier vient bien de ce réglage :
+le rapport <NOM>-REPORT.json indique stf_fps et stf_bytes_per_second.
+Changer le réglage dans l’encodeur ne modifie pas les anciens fichiers :
+il faut réencoder et copier le nouveau STV sur Atari.
+Si 12,5 images/s ralentit encore, vérifier le débit soutenu du stockage,
+les latences du pilote et la configuration de la machine.
+Les essais Hatari avec un dossier Windows ne mesurent pas le débit ACSI réel.
+
+8. Taille et limites
+
+Une minute de STV représente environ 24,6 Mo à 12,5 images/s et 49,2 Mo
+à 25 images/s. L’encodeur produit aussi un LAV, les WAV et des aperçus :
+le dossier Windows complet prend davantage de place que le seul STV.
+Les clips dépassant la limite de fichier TOS de 2 Gio doivent être découpés
+avec les champs Début et Durée. La version actuelle ne propose pas de
+lecture automatique de plusieurs parties.
+
+Une URL nécessite Internet et dépend du site et de ses conditions d’accès.
+Si elle n’est pas reconnue, utiliser un fichier local disponible sur le PC.

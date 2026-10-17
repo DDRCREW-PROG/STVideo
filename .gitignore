@@ -1,0 +1,11 @@
+vendor/
+build/
+__pycache__/
+dist/
+.venv/
+*.pyc
+*.encode.lock
+*.STV
+*.LAV
+*.WAV
+!player/STFPLAY.PRG
