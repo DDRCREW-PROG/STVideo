@@ -14,6 +14,23 @@ machines with 512 KB of RAM or more**, in PAL.
 
 **[Download the installer or portable version](https://github.com/DDRCREW-PROG/STVideo/releases/latest)** · [Lire en français](README.md)
 
+## A few screenshots
+
+Here are the settings I use to prepare a video for the STF: an optimised
+ST palette, fixed dithering, optimised STF audio and 12.5 fps.
+
+![The Windows encoder: STF picture, audio and frame-rate settings](docs/images/reglages-stf.png)
+
+Here are three examples of video playback in **Hatari**. The first two
+screenshots show an **8 MHz STE with 4 MB of RAM**. These are emulator
+screenshots; my test on a real STF with 1 MB is described below.
+
+![Video playback in Hatari, configured as an 8 MHz STE with 4 MB of RAM — first example](docs/images/lecture-hatari-01.png)
+
+![Video playback in Hatari, configured as an 8 MHz STE with 4 MB of RAM — second example](docs/images/lecture-hatari-02.png)
+
+![Another example of video playback in Hatari](docs/images/lecture-hatari-03.png)
+
 ## How it runs on my STF
 
 I tested the player on my **Atari STF with 1 MB of RAM**, using **ACSI storage

@@ -14,6 +14,24 @@ Le tout fonctionne sur **ST, STF et STE, à partir de 512 Ko de RAM**, en PAL.
 
 **[Télécharger l'installateur ou la version portable](https://github.com/DDRCREW-PROG/STVideo/releases/latest)** · [Read in English](README.en.md)
 
+## Quelques images
+
+Voici les réglages que j'utilise pour préparer une vidéo pour le STF :
+palette ST optimisée, trame fixe, audio optimisé STF et 12,5 images/s.
+
+![L'encodeur sous Windows : réglages de l'image, du son et de la cadence pour le STF](docs/images/reglages-stf.png)
+
+Et voici trois exemples du rendu pendant la lecture dans **Hatari**.
+Les deux premières captures affichent une configuration **STE à 8 MHz avec
+4 Mo de RAM**. Ce sont des captures d'émulation ; mon essai sur un vrai STF
+avec 1 Mo est décrit juste après.
+
+![Lecture vidéo dans Hatari, en configuration STE à 8 MHz avec 4 Mo de RAM — premier exemple](docs/images/lecture-hatari-01.png)
+
+![Lecture vidéo dans Hatari, en configuration STE à 8 MHz avec 4 Mo de RAM — deuxième exemple](docs/images/lecture-hatari-02.png)
+
+![Autre exemple du rendu vidéo pendant la lecture dans Hatari](docs/images/lecture-hatari-03.png)
+
 ## Ce que ça donne sur mon STF
 
 J'ai testé le lecteur sur mon **Atari STF avec 1 Mo de RAM**, équipé d'un
